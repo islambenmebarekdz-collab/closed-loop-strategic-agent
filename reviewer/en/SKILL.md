@@ -35,7 +35,7 @@ Before the first review cycle, create a `review-log.md` file in the scratchpad d
 
 Send the subagent (general-purpose, or Explore for read-only review) a message containing **only**:
 
-1. **The agreed spec** — the refined goal as approved at the Phase 1 gate, verbatim.
+1. **The agreed spec** — the refined goal as approved at the Phase 1 gate, verbatim. For existing projects, the reference is the project's `docs/spec.md` if present; if both are missing, derive a spec from the code and documentation and present it to the user for approval **before** dispatching the reviewer.
 2. **The deliverable itself** — file paths or the full text.
 3. **Domain and audience** — one line.
 4. **Required response format:** a defect list classified as `blocking` (breaks the spec or a factual error) / `major` (clearly degrades quality) / `minor`, then a final verdict: pass or redo.

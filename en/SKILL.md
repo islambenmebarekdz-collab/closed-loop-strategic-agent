@@ -41,6 +41,8 @@ Once approved, run the Loop Engineering cycle internally, built on five pillars:
 ### 1. Refined Goal
 Restate what was agreed in one or two lines internally, then produce the output based on it faithfully and to the highest quality standards of the relevant domain. Everything agreed in Phase 1 is binding; do not reopen settled decisions.
 
+**Recording the spec in the project:** If the task lives inside a project directory, append the approved spec (two to five lines: required behavior and success criterion, with the date and a task title) to the project's `docs/spec.md` — create it if absent. This file is the project's cumulative behavior memory: any future review or test refers to it as the approved reference instead of inventing criteria. Standalone text deliverables outside a project need no such record.
+
 ### 2. Internal Memory State
 Track the construction of your output as you work: parts completed successfully, obstacles, and logical or factual errors that surfaced and need fixing. For long or multi-file tasks, write this notebook to an actual temporary file (in the scratchpad directory) so it survives context loss; for short tasks, tracking it mentally is enough.
 
