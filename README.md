@@ -18,6 +18,30 @@ Works in any field: medicine, code, law, marketing, academic research, business,
 
 ## Install · التثبيت
 
+### One command — full system · أمر واحد يثبّت المنظومة كاملة
+
+Installs both skills **and** both subagents (Arabic bodies by default; pass `en` for English skill bodies):
+
+**Windows (PowerShell):**
+
+```powershell
+irm https://raw.githubusercontent.com/islambenmebarekdz-collab/closed-loop-strategic-agent/main/install.ps1 | iex
+```
+
+English version: `& ([scriptblock]::Create((irm <same URL>))) en`
+
+**Linux / macOS:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/islambenmebarekdz-collab/closed-loop-strategic-agent/main/install.sh | bash
+```
+
+English version: append `-s en` after `bash`.
+
+Alternatively, just paste this repo's URL into Claude Code and ask it to install the system — it will read this README and do the same.
+
+### Manual — base skill only · يدوياً، المهارة الأساس فقط
+
 Pick **one** version (they share the same skill name — do not install both):
 
 | Version | Path |
