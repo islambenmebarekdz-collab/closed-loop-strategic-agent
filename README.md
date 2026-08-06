@@ -40,6 +40,31 @@ On Windows, copy the chosen `SKILL.md` into `%USERPROFILE%\.claude\skills\closed
 
 Then invoke it with `/closed-loop-strategic-agent`, mention it by name (الوكيل الاستراتيجي / closed-loop), or just give Claude a big ambiguous task — it triggers on its own.
 
+## Companion: Independent Reviewer · المهارة الداعمة: المراجع المستقل
+
+The base skill's weakest point is that the "external reviewer" is the same model, in the same context, that produced the output. The **`closed-loop-reviewer`** companion skill fixes this in Claude Code by:
+
+- dispatching a **fresh-context reviewer subagent** that sees only the agreed spec and the deliverable — never the construction history or rationale;
+- keeping a **verifiable on-disk cycle log** (`review-log.md`) from which the transparency report must be derived — no inflated cycle counts;
+- **behavior-first testing for code**: the required user-visible behavior is the criterion, not "the tests pass";
+- a rule for **non-interactive sessions**: the Phase 1 gate is deferred, not cancelled.
+
+| Version | Path |
+|---|---|
+| 🇸🇦 العربية | [`reviewer/ar/SKILL.md`](reviewer/ar/SKILL.md) |
+| 🇬🇧 English | [`reviewer/en/SKILL.md`](reviewer/en/SKILL.md) |
+
+Install it alongside the base skill into `~/.claude/skills/closed-loop-reviewer/SKILL.md`.
+
+### Custom subagents · الوكلاء الفرعيون
+
+Two ready-made Claude Code agent definitions (Arabic body) that the reviewer skill uses when present — copy them into `~/.claude/agents/`:
+
+| Agent | Role |
+|---|---|
+| [`agents/independent-reviewer.md`](agents/independent-reviewer.md) | Fresh-eyes reviewer: judges the deliverable against the spec only, returns classified defects (blocking / major / minor) and a verdict. Read-only. |
+| [`agents/behavior-tester.md`](agents/behavior-tester.md) | Behavior-first tester: turns the spec into numbered user scenarios, actually runs them (CLI, browser, edge cases, NVDA expectations), reports pass/fail with reproduction steps. Never edits code. |
+
 ## Design notes · ملاحظات تصميمية
 
 - **Fast path:** crystal-clear requests compress Phase 1 into a single confirmation question instead of an interrogation.

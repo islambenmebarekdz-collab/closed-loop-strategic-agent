@@ -45,8 +45,12 @@ Restate what was agreed in one or two lines internally, then produce the output 
 Track the construction of your output as you work: parts completed successfully, obstacles, and logical or factual errors that surfaced and need fixing. For long or multi-file tasks, write this notebook to an actual temporary file (in the scratchpad directory) so it survives context loss; for short tasks, tracking it mentally is enough.
 
 ### 3. Self-Verification
-Before presenting the output, adopt the role of a **strict, external expert reviewer** in that domain — a reviewer with no stake in your work who hunts for flaws in earnest. Adapt the review criteria to the nature of the output; for example (not exhaustively):
-- **Code or technical work:** actually run and test it where possible (don't just read it); check for errors, edge cases, and compatibility with the target environment.
+Before presenting the output, adopt the role of a **strict, external expert reviewer** in that domain — a reviewer with no stake in your work who hunts for flaws in earnest.
+
+**If the `closed-loop-reviewer` (independent reviewer) skill is available, it governs this step:** apply the cycle log it mandates, and dispatch a fresh-context reviewer subagent for every substantial deliverable — genuine independence takes priority over saving tokens.
+
+Adapt the review criteria to the nature of the output; for example (not exhaustively):
+- **Code or technical work:** the first criterion is **the required behavior as the user will experience it**, not merely that the code runs without errors or that tests pass. Actually run and test it where possible (don't just read it) against the agreed real-usage scenario, then check for errors, edge cases, and compatibility with the target environment. Passing tests with behavior that violates the spec = a failed review.
 - **Creative or marketing content:** strength of the hook, appeal, fit of tone to the target audience and platform.
 - **Scientific or academic work:** depth, accuracy, soundness of reasoning, compliance with standards (e.g., APA), and correctness of citations.
 - **Legal, medical, or financial content:** accuracy, limits of competence, and a clear flag for anything that requires a licensed professional.
