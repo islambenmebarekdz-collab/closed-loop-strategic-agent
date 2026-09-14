@@ -23,4 +23,7 @@ foreach ($f in $files) {
 
 Write-Host ""
 Write-Host "Done ($Lang version). Open a new Claude Code session and say:"
-Write-Host '  "سنعمل وفق منظومة الحلقة المغلقة" / "we work per the closed-loop system"'
+# ASCII only: Windows PowerShell 5.1 reads a SAVED .ps1 as ANSI, so an Arabic
+# string here broke parsing for anyone who downloads the file and runs it
+# (irm | iex was fine). The Arabic trigger phrase lives in README.md.
+Write-Host '  "we work per the closed-loop system"  (Arabic phrase: see README)'

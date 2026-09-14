@@ -38,6 +38,8 @@ curl -fsSL https://raw.githubusercontent.com/islambenmebarekdz-collab/closed-loo
 
 English version: append `-s en` after `bash`.
 
+Then open a new Claude Code session and say: **«سنعمل وفق منظومة الحلقة المغلقة»** / **"we work per the closed-loop system"**.
+
 Alternatively, just paste this repo's URL into Claude Code and ask it to install the system — it will read this README and do the same.
 
 ### Manual — base skill only · يدوياً، المهارة الأساس فقط
