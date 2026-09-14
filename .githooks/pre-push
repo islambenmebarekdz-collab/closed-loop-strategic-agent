@@ -1,0 +1,19 @@
+#!/bin/sh
+# Runs the quality gate before every push, and blocks the push if it fails.
+#
+# main IS the release in this repo: `irm ... | iex` and `curl ... | bash`
+# install from it the moment it moves. A check that runs after the push
+# reports a break users already received.
+#
+# Enabled per clone with:  git config core.hooksPath .githooks
+# Bypass (deliberate only):  git push --no-verify
+
+root="$(git rev-parse --show-toplevel)"
+
+if ! command -v powershell.exe >/dev/null 2>&1; then
+    echo "pre-push: powershell.exe not found, so the gate did NOT run." >&2
+    echo "pre-push: run scripts/check.ps1 elsewhere, or push with --no-verify knowingly." >&2
+    exit 1
+fi
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$root/scripts/check.ps1" -PrePush
