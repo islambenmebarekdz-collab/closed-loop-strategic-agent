@@ -1,0 +1,6 @@
+# Shell scripts must keep LF in every checkout. This machine's git converts
+# text to CRLF on checkout; a CRLF hook passes "-PrePush\r" to PowerShell on
+# Windows and has a broken "#!/bin/sh\r" shebang on Linux -- the push gate
+# would fail to run exactly where it is meant to guard.
+.githooks/* text eol=lf
+*.sh        text eol=lf
