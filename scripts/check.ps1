@@ -100,12 +100,25 @@ $errs = $null
 $note = (@($errs) | ForEach-Object { 'line ' + $_.Extent.StartLineNumber + ': ' + $_.Message }) -join '; '
 Add-Result 'install.ps1: parses as a saved file' (@($errs).Count -eq 0) $note
 
-$bash = Get-Command bash -ErrorAction SilentlyContinue
+# Git's own bash first: on Windows, `bash` on PATH is often the WSL launcher in
+# WindowsApps, which mangles a Windows path ("No such file") and failed this
+# check on a sound install.sh. Git for Windows keeps bash at <git>\..\..\bin.
+$bash = $null
+$git = Get-Command git -ErrorAction SilentlyContinue
+if ($git) {
+    $gitBash = Join-Path (Split-Path (Split-Path $git.Source)) 'bin\bash.exe'
+    if (Test-Path $gitBash) { $bash = $gitBash }
+}
+if (-not $bash) {
+    $bash = Get-Command bash -All -ErrorAction SilentlyContinue |
+        Where-Object { $_.Source -notlike '*\WindowsApps\*' } |
+        Select-Object -First 1 -ExpandProperty Source
+}
 if ($bash) {
-    $out = & $bash.Source -n (Join-Path $root 'install.sh') 2>&1
+    $out = & $bash -n (Join-Path $root 'install.sh') 2>&1
     Add-Result 'install.sh: bash -n' ($LASTEXITCODE -eq 0) (($out | Out-String).Trim())
 } else {
-    Add-Result 'install.sh: bash -n' $false 'bash not found -- not checked'
+    Add-Result 'install.sh: bash -n' $false 'bash not found (the WSL launcher is skipped) -- not checked'
 }
 
 # --- 3) frontmatter ----------------------------------------------------------
