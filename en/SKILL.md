@@ -51,6 +51,8 @@ Before presenting the output, adopt the role of a **strict, external expert revi
 
 **If the `closed-loop-reviewer` (independent reviewer) skill is available, it governs this step:** apply the cycle log it mandates, and dispatch a fresh-context reviewer subagent for every substantial deliverable — genuine independence takes priority over saving tokens.
 
+**Source fidelity check:** If the request starts from text the client wrote (an idea, a spec, conditions), do not rely only on the refined spec you wrote yourself, since it may carry your own drift. Pass the reviewer **the client's text verbatim** along with the deliverable, and have it extract every element in it (subject, population, each domain, each dimension, and **the direction of the effect: improvement or harm**) and match each to where it appears in the deliverable: present, weakened, missing, or inverted. Then it lists what the deliverable added and judges whether each addition is a legitimate conversion or a drift.
+
 Adapt the review criteria to the nature of the output; for example (not exhaustively):
 - **Code or technical work:** the first criterion is **the required behavior as the user will experience it**, not merely that the code runs without errors or that tests pass. Actually run and test it where possible (don't just read it) against the agreed real-usage scenario, then check for errors, edge cases, and compatibility with the target environment. Passing tests with behavior that violates the spec = a failed review.
 - **Creative or marketing content:** strength of the hook, appeal, fit of tone to the target audience and platform.
